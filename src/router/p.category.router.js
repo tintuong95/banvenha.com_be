@@ -1,17 +1,32 @@
 const express = require("express");
 
 const { categoryProductController } = require("../controller");
-
+const findByPk = require("../middleware/findByPk");
+const { categoryProductModel } = require("../models");
 const categoryProduct = express.Router();
 
 categoryProduct.get("/", categoryProductController.getAllCategoryProduct);
 
-categoryProduct.get("/:id", categoryProductController.getDetailCategoryProduct);
+categoryProduct.get(
+    "/details",
+    categoryProductController.getDetailCategoryProduct
+);
 
-categoryProduct.post("/", categoryProductController.createCategoryProduct);
+categoryProduct.post(
+    "/create",
+    categoryProductController.createCategoryProduct
+);
 
-categoryProduct.put("/:id", categoryProductController.updateCategoryProduct);
+categoryProduct.put(
+    "/:id/update",
+    findByPk(categoryProductModel),
+    categoryProductController.updateCategoryProduct
+);
 
-categoryProduct.delete("/:id", categoryProductController.deleteCategoryProduct);
+categoryProduct.delete(
+    "/:id/delete",
+    findByPk(categoryProductModel),
+    categoryProductController.deleteCategoryProduct
+);
 
 module.exports = categoryProduct;

@@ -1,19 +1,17 @@
-//import 
-const express = require('express');
+//import
+const express = require("express");
 const addPlugins = require("./plugins");
-const routes = require('./router');
+const routes = require("./router");
 const startServer = require("./config/server");
-const sequelize = require('./config/sequelize');
-
+const sequelize = require("./config/sequelize");
 
 //setup
-const server = express()
+const server = express();
 
-addPlugins(server)
+addPlugins(server);
 
-server.use("/api", routes)
+server.use("/api", routes);
 
-sequelize.sync({alter:false})
+sequelize.sync({ alter: false });
 
-
-startServer(server)
+startServer(server);
