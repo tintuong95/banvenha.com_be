@@ -1,29 +1,21 @@
 const { adminService } = require("../service");
 
-function getAdminAll(req, res) {
-  adminService.adminAll(req, res);
-}
-
-function getAdminDetail(req, res) {
-  adminService.adminDetail(req, res);
-}
-
 function createAdmin(req, res) {
-  adminService.adminCreate(req, res);
+    adminService.adminSignup(req, res);
 }
 
-function updateAdmin(req, res) {
-  adminService.adminUpdate(req, res);
+function loginAdmin(req, res) {
+    adminService.adminLogin(req, res);
 }
 
-function deleteAdmin(req, res) {
-  adminService.adminDelete(req, res);
+function logoutAdmin(req, res) {
+    adminService.adminLogout(req, res);
 }
+
+
 
 module.exports = {
-  getAdminAll,
-  getAdminDetail,
-  createAdmin,
-  updateAdmin,
-  deleteAdmin,
+    loginAdmin,
+    createAdmin,
+    logoutAdmin
 };

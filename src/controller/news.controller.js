@@ -1,7 +1,9 @@
 const { newsService } = require("../service")
 
-function getNewsAll(req, res) {
-    newsService.newsAll(req, res)
+function getAllNews(req, res) {
+    req.query.page ?
+        newsService.newsPageAll(req, res) :
+        newsService.newsAll(req, res);
 }
 
 function getNewsDetail(req, res) {
@@ -22,9 +24,10 @@ function deleteNews(req, res) {
 
 
 module.exports = {
-    getNewsAll,
+
     getNewsDetail,
     createNews,
     updateNews,
     deleteNews,
+    getAllNews,
 };

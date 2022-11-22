@@ -1,17 +1,19 @@
 const express = require("express");
 
 const { orderController } = require("../controller");
+const findByPk = require("../middleware/findByPk");
+const { orderModel } = require("../models");
 
 const orderRouter = express.Router();
 
 orderRouter.get("/", orderController.getAllOrder);
 
-orderRouter.get("/:id", orderController.getOrderDetail);
+orderRouter.get("/details", orderController.getOrderDetail);
 
-orderRouter.post("/", orderController.createOrder);
+orderRouter.post("/create", orderController.createOrder);
 
-orderRouter.put("/:id", orderController.updateOrder);
+orderRouter.put("/:id/update", findByPk(orderModel), orderController.updateOrder);
 
-orderRouter.delete("/:id", orderController.deleteOrder);
+orderRouter.delete("/:id/delete", findByPk(orderModel), orderController.deleteOrder);
 
 module.exports = orderRouter;

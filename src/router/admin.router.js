@@ -4,14 +4,10 @@ const { adminController } = require("../controller");
 
 const adminRouter = express.Router();
 
-adminRouter.get("/", adminController.getAdminAll);
+adminRouter.post("/sign-up", adminController.createAdmin);
 
-adminRouter.get("/:id", adminController.getAdminDetail);
+adminRouter.post("/login", adminController.loginAdmin);
 
-adminRouter.post("/", adminController.createAdmin);
-
-adminRouter.put("/:id", adminController.updateAdmin);
-
-adminRouter.delete("/:id", adminController.deleteAdmin);
+adminRouter.get("/logout", adminController.logoutAdmin);
 
 module.exports = adminRouter;

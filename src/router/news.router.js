@@ -1,18 +1,23 @@
-const express = require('express');
+const express = require("express");
 
-const { newsController } = require("../controller")
+const { newsController } = require("../controller");
+const findByPk = require("../middleware/findByPk");
+const { newsModel } = require("../models");
 
-const newsRouter = express.Router()
+const newsRouter = express.Router();
 
-newsRouter.get("/", newsController.getNewsAll);
+newsRouter.get("/", newsController.getAllNews);
 
-newsRouter.get("/:id", newsController.getNewsDetail);
+newsRouter.get("/details", newsController.getNewsDetail);
 
-newsRouter.post("/", newsController.createNews);
+newsRouter.post("/create", newsController.createNews);
 
-newsRouter.put("/:id", newsController.updateNews);
+newsRouter.put("/:id/update", findByPk(newsModel), newsController.updateNews);
 
-newsRouter.delete("/:id", newsController.deleteNews);
-
+newsRouter.delete(
+    "/:id/delete",
+    findByPk(newsModel),
+    newsController.deleteNews
+);
 
 module.exports = newsRouter;

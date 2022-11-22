@@ -24,7 +24,7 @@ function roleAll(req, res) {
         });
 }
 
-async function roleDetail(req, res) {
+function roleDetail(req, res) {
     roleModel
         .findOne({
             where: {...req.query },
@@ -51,7 +51,7 @@ function roleCreate(req, res) {
         });
 }
 
-async function roleUpdate(req, res) {
+function roleUpdate(req, res) {
     const newModel = res.locals.model;
     newModel
         .update(req.body)
@@ -63,7 +63,7 @@ async function roleUpdate(req, res) {
         });
 }
 
-async function roleDelete(req, res) {
+function roleDelete(req, res) {
     const newModel = res.locals.model;
     newModel
         .destroy()

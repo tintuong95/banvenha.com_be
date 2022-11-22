@@ -16,6 +16,9 @@ module.exports = sequelize.define("Order", {
     phone: {
         type: new DataTypes.STRING(30),
         allowNull: false,
+        validate: {
+            is: /(84|0[3|5|7|8|9])+([0-9]{8})\b/g
+        }
     },
     address: {
         type: new DataTypes.STRING(100),

@@ -18,9 +18,15 @@ module.exports = sequelize.define("Admin", {
     },
     phone: {
         type: new DataTypes.STRING(30),
+        validate: {
+            is: /(84|0[3|5|7|8|9])+([0-9]{8})\b/g,
+        }
     },
     email: {
         type: new DataTypes.STRING(30),
+        validate: {
+            isEmail: true,
+        }
     },
     address: {
         type: new DataTypes.STRING(100),

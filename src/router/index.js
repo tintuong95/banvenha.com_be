@@ -24,7 +24,7 @@ routes.use("/category-product", categoryProduct);
 
 routes.use("/image", imageRouter);
 
-routes.use("/orderRouter", orderRouter);
+routes.use("/order", orderRouter);
 
 routes.use("/product", productRouter);
 

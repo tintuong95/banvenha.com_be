@@ -1,8 +1,9 @@
+const { categoryNewsModel } = require("../models");
 const {
     DELETE_SUCCESS,
     NOT_FOUND_TEXT,
 } = require("../constants/response.text");
-const { categoryNewsModel } = require("../models");
+
 const { pagination } = require("../utils/pagination");
 const { queryHandler } = require("../utils/query");
 
@@ -36,7 +37,6 @@ function newsCategoryAll(req, res) {
             res.status(STATUS_SERVER_ERROR).send(err);
         });
 }
-
 
 function newsCategoryDetail(req, res) {
     categoryNewsModel

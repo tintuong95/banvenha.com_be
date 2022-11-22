@@ -1,6 +1,7 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 const randString = require("../utils/randString");
+const remakeParam = require("../utils/remake.param");
 
 module.exports = sequelize.define("News", {
     id: {
@@ -16,7 +17,7 @@ module.exports = sequelize.define("News", {
     },
     param: {
         type: new DataTypes.STRING(50),
-        allowNull: false,
+        allowNull: true,
         unique: true,
     },
     description: {
@@ -54,5 +55,11 @@ module.exports = sequelize.define("News", {
     deletedAt: {
         allowNull: true,
         type: DataTypes.DATE,
+    },
+}, {
+    hooks: {
+        beforeCreate(news, option) {
+            news.param = remakeParam(news.title);
+        },
     },
 });
