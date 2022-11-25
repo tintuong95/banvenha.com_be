@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 const randString = require("../utils/randString");
 
-module.exports = sequelize.define("Role", {
+const Role= sequelize.define("Role", {
     id: {
         type: new DataTypes.STRING(6),
         primaryKey: true,
@@ -29,3 +29,5 @@ module.exports = sequelize.define("Role", {
         type: DataTypes.DATE,
     },
 });
+
+module.exports = Role

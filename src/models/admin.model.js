@@ -2,18 +2,14 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 const randString = require("../utils/randString");
 
-module.exports = sequelize.define("Admin", {
+const Admin = sequelize.define("Admin", {
     id: {
         type: new DataTypes.STRING(6),
         primaryKey: true,
         allowNull: false,
         defaultValue: () => randString(6),
     },
-    accountId: {
-        type: new DataTypes.STRING(6),
-        allowNull: false,
-    },
-    fullname: {
+    fullName: {
         type: new DataTypes.STRING(30),
     },
     phone: {
@@ -55,3 +51,6 @@ module.exports = sequelize.define("Admin", {
         type: DataTypes.DATE,
     },
 });
+
+
+module.exports = Admin;

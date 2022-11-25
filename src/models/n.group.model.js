@@ -1,10 +1,10 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
-const { hashPassword, comparePassword } = require("../utils/bcrypt");
 const randString = require("../utils/randString");
+const remakeParam = require("../utils/remake.param");
 
-const Account = sequelize.define(
-  "Account",
+const GroupNews = sequelize.define(
+  "GroupNews",
   {
     id: {
       type: new DataTypes.STRING(6),
@@ -12,20 +12,13 @@ const Account = sequelize.define(
       allowNull: false,
       defaultValue: () => randString(6),
     },
-    username: {
+    name: {
       type: new DataTypes.STRING(20),
       allowNull: false,
     },
-    password: {
-      type: new DataTypes.STRING(100),
-      allowNull: false,
+    param: {
+      type: new DataTypes.STRING(20),
     },
-    adminId: {
-      type: new DataTypes.STRING(6),
-      allowNull: false,
-      unique: true,
-    },
-
     createdAt: {
       allowNull: false,
       type: DataTypes.DATE,
@@ -35,22 +28,17 @@ const Account = sequelize.define(
       type: DataTypes.DATE,
     },
     deletedAt: {
-      allowNull: true,
       type: DataTypes.DATE,
+      allowNull: true,
     },
   },
   {
     hooks: {
-      beforeCreate(account, options) {
-        account.password = hashPassword(account.password);
+      beforeCreate(category, option) {
+        category.param = remakeParam(category.name);
       },
     },
   }
 );
 
-Account.prototype.handleLogin = function(password, hashPassword) {
-    return comparePassword(password, hashPassword);
-};
-
-
-module.exports = Account
+module.exports = GroupNews

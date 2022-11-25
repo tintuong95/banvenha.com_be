@@ -29,7 +29,7 @@ function paginationLinks(req, data, currentPage, perPage) {
     let links = [];
     const url = getUrlRequest(req);
     const totalPage = Math.ceil(Number(count / perPage));
-    console.log(currentPage, totalPage, currentPage < totalPage);
+   
     const nextLink =
         currentPage < totalPage ?
         url + "?" + mapQuery(req.query, currentPage + 1) :
@@ -67,6 +67,7 @@ function mapQuery(query, page) {
         })
         .join("&");
 }
+
 
 module.exports = {
     pagination,

@@ -1,8 +1,8 @@
 const express = require('express');
 const accountRouter = require('./account.router');
 const adminRouter = require('./admin.router');
-const categoryNews = require('./n.category.router');
-const categoryProduct = require('./p.category.router');
+const groupNews = require('./n.group.router');
+const groupProduct = require('./p.group.router');
 const imageRouter = require('./image.router');
 const newsRouter = require('./news.router');
 const orderRouter = require('./order.router');
@@ -18,9 +18,9 @@ routes.use("/account", accountRouter);
 
 routes.use("/admin", adminRouter);
 
-routes.use("/category-news", categoryNews);
+routes.use("/group-news", groupNews);
 
-routes.use("/category-product", categoryProduct);
+routes.use("/group-product", groupProduct);
 
 routes.use("/image", imageRouter);
 

@@ -2,7 +2,7 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../config/sequelize");
 const randString = require("../utils/randString");
 
-module.exports = sequelize.define("Image", {
+ const Image= sequelize.define("Image", {
     id: {
         type: new DataTypes.STRING(6),
         primaryKey: true,
@@ -15,6 +15,10 @@ module.exports = sequelize.define("Image", {
     },
     name: {
         type: new DataTypes.STRING(100),
+        allowNull: false,
+    },
+    type:{
+        type: new DataTypes.STRING(10),
         allowNull: false,
     },
     createdAt: {
@@ -30,3 +34,5 @@ module.exports = sequelize.define("Image", {
         type: DataTypes.DATE,
     },
 });
+
+module.exports = Image;

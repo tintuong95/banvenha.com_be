@@ -5,12 +5,12 @@ const accountService = require("./account.service");
 const orderService = require("./order.service");
 const imageService = require("./image.service");
 const productService = require("./product.service");
-const categoryNewsService = require("./n.category.service");
-const categoryProductService = require("./p.category.service");
+const groupNewsService = require("./n.group.service");
+const groupProductService = require("./p.group.service");
 
 module.exports = {
-  categoryNewsService,
-  categoryProductService,
+  groupNewsService,
+  groupProductService,
   productService,
   orderService,
   imageService,

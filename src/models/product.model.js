@@ -3,7 +3,7 @@ const sequelize = require("../config/sequelize");
 const randString = require("../utils/randString");
 const remakeParam = require("../utils/remake.param");
 
-module.exports = sequelize.define(
+const Product=sequelize.define(
     "Product", {
         id: {
             type: new DataTypes.STRING(6),
@@ -63,7 +63,7 @@ module.exports = sequelize.define(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        categoryId: {
+        groupId: {
             type: new DataTypes.STRING(6),
             allowNull: false,
         },
@@ -91,3 +91,5 @@ module.exports = sequelize.define(
         },
     }
 );
+
+module.exports = Product;

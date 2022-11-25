@@ -1,4 +1,4 @@
-const { orderModel, productModel } = require("../models");
+const { groupNewsModel, productModel, newsModel } = require("../models");
 const {
   DELETE_SUCCESS,
   NOT_FOUND_TEXT,
@@ -12,16 +12,14 @@ const {
   STATUS_SERVER_ERROR,
   STATUS_NOTFOUND,
 } = require("../constants/response.status");
-const { PRODUCT_ORDER } = require("../constants/alias.association");
+const { GROUP_NEWS } = require("../constants/alias.association");
 
-/**@note get order with pagination */
-
-function orderPageAll(req, res) {
+function newsProductPageAll(req, res) {
   const query = queryHandler(req);
-  orderModel
+  groupNewsModel
     .findAndCountAll({
       ...query,
-    //   include: { model: productModel, as: PRODUCT_ORDER },
+    //   include: { model: productModel, as: GROUP_NEWS },
     })
     .then((result) => {
       res
@@ -33,17 +31,14 @@ function orderPageAll(req, res) {
     });
 }
 
-/**@note get order not pagination */
-
-function orderAll(req, res) {
-  const query = queryHandler(req);
-  orderModel
+function newsProductAll(req, res) {
+  groupNewsModel
     .findAndCountAll({
-      ...query,
-      //   include: { model: productModel, as: PRODUCT_ORDER },
+      ...req.query,
+    //   include: { model: newsModel, as: GROUP_NEWS },
     })
     .then((result) => {
-      res.status(STATUS_SUCCESS).json(result);
+      res.status(STATUS_SUCCESS).send(result);
     })
     .catch((err) => {
       console.log(err);
@@ -51,10 +46,8 @@ function orderAll(req, res) {
     });
 }
 
-/**@note get order details */
-
-function orderDetail(req, res) {
-  orderModel
+function newsProductDetail(req, res) {
+  groupNewsModel
     .findOne({
       where: { ...req.query },
     })
@@ -68,10 +61,8 @@ function orderDetail(req, res) {
     });
 }
 
-/**@note create order  */
-
-function orderCreate(req, res) {
-  orderModel
+function newsProductCreate(req, res) {
+  groupNewsModel
     .create(req.body)
     .then((result) => {
       res.status(STATUS_SUCCESS).send(result);
@@ -81,9 +72,7 @@ function orderCreate(req, res) {
     });
 }
 
-/**@note update order  */
-
-function orderUpdate(req, res) {
+function newsProductUpdate(req, res) {
   const newModel = res.locals.model;
   newModel
     .update(req.body)
@@ -95,9 +84,7 @@ function orderUpdate(req, res) {
     });
 }
 
-/**@note delete order  */
-
-function orderDelete(req, res) {
+function newsProductDelete(req, res) {
   const newModel = res.locals.model;
   newModel
     .destroy()
@@ -110,10 +97,10 @@ function orderDelete(req, res) {
 }
 
 module.exports = {
-  orderAll,
-  orderDetail,
-  orderCreate,
-  orderUpdate,
-  orderDelete,
-  orderPageAll,
+  newsProductPageAll,
+  newsProductDetail,
+  newsProductCreate,
+  newsProductUpdate,
+  newsProductDelete,
+  newsProductAll,
 };

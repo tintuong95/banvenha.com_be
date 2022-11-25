@@ -3,8 +3,8 @@ const sequelize = require("../config/sequelize");
 const randString = require("../utils/randString");
 const remakeParam = require("../utils/remake.param");
 
-module.exports = sequelize.define(
-    "CategoryNews", {
+const GroupProduct= sequelize.define(
+    "GroupProduct", {
         id: {
             type: new DataTypes.STRING(6),
             primaryKey: true,
@@ -17,6 +17,7 @@ module.exports = sequelize.define(
         },
         param: {
             type: new DataTypes.STRING(20),
+            allowNull: false,
         },
         createdAt: {
             allowNull: false,
@@ -27,8 +28,8 @@ module.exports = sequelize.define(
             type: DataTypes.DATE,
         },
         deletedAt: {
-            type: DataTypes.DATE,
             allowNull: true,
+            type: DataTypes.DATE,
         },
     }, {
         hooks: {
@@ -36,5 +37,8 @@ module.exports = sequelize.define(
                 category.param = remakeParam(category.name);
             },
         },
+
     }
 );
+
+module.exports = GroupProduct
